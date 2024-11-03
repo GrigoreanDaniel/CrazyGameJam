@@ -40,7 +40,6 @@ public class EnemyAI : MonoBehaviour {
     private Vector3 rayCastOffSet;
 
     private int RANDOM_NUMBER;
-    private int RANDOM_NUMBER2;
     private int RANDOM_NUMBER3;
 
     private void Start() {
@@ -101,24 +100,16 @@ public class EnemyAI : MonoBehaviour {
 
             if (enemy.remainingDistance <= enemy.stoppingDistance) {
 
-                RANDOM_NUMBER2 = Random.Range(0, 2);
+                enemyAnimator.ResetTrigger("sprint");
+                enemyAnimator.ResetTrigger("walk");
+                enemyAnimator.SetTrigger("idle");
 
-                if (RANDOM_NUMBER2 == 0) {
+                enemy.speed = 0;
 
-                    RANDOM_NUMBER = Random.Range(0, destinations.Count);
-                    currentDestination = destinations[RANDOM_NUMBER];
-                }
-                if (RANDOM_NUMBER2 == 1) {
+                StopCoroutine("stayIdle");
+                StartCoroutine("stayIdle");
 
-                    enemyAnimator.ResetTrigger("sprint");
-                    enemyAnimator.ResetTrigger("walk");
-                    enemyAnimator.SetTrigger("idle");
-
-                    StopCoroutine("stayIdle");
-                    StartCoroutine("stayIdle");
-
-                    IsWalking = false;
-                }
+                IsWalking = false;
             }
         }
     }
