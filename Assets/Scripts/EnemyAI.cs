@@ -30,7 +30,10 @@ public class EnemyAI : MonoBehaviour {
     [SerializeField] private float detectionDistance;
 
     [SerializeField] private float sightDistance;
-    [SerializeField] private float catchDistance;
+    [SerializeField] private float damageDistance;
+
+    [SerializeField] private float health;
+    [SerializeField] private float damage;
 
     private bool IsWalking;
     private bool IsChasing;
@@ -97,15 +100,19 @@ public class EnemyAI : MonoBehaviour {
             enemyAnimator.ResetTrigger("search");
             enemyAnimator.SetTrigger("sprint");
 
-            if (aiDistance <= catchDistance) {
+            if (aiDistance <= damageDistance) {
 
+                // It will damage the player
                 //player.gameObject.SetActive(false);
 
                 enemyAnimator.ResetTrigger("walk");
                 enemyAnimator.ResetTrigger("idle");
                 enemyAnimator.ResetTrigger("search");
                 enemyAnimator.SetTrigger("sprint");
-                //enemyAnimator.SetTrigger("jumpscare");
+
+                // Start attack animation and stop the sprint animation
+                // enemyAnimator.SetTrigger("atackAnimation"); 
+                //
 
                 //StartCoroutine(deathRoutine());
 
