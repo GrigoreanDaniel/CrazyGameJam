@@ -2171,7 +2171,9 @@ MonoBehaviour:
   maxSearchTime: 10
   detectionDistance: 15
   sightDistance: 0
-  catchDistance: 3
+  damageDistance: 0
+  health: 0
+  damage: 0
   rayCastOffset: {x: 0, y: 0, z: 0}
   deathScene: 
   aiDistance: 0
