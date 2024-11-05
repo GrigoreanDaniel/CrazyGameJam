@@ -21,6 +21,8 @@ namespace StarterAssets
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
 
+		[SerializeField] private float health;
+
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
 		public float JumpHeight = 1.2f;

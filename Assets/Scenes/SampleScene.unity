@@ -1254,6 +1254,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: GroundLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
@@ -2170,10 +2174,10 @@ MonoBehaviour:
   minSearchTime: 1
   maxSearchTime: 10
   detectionDistance: 15
-  sightDistance: 0
-  damageDistance: 0
-  health: 0
-  damage: 0
+  sightDistance: 15
+  damageDistance: 2
+  health: 100
+  damage: 20
   rayCastOffset: {x: 0, y: 0, z: 0}
   deathScene: 
   aiDistance: 0
