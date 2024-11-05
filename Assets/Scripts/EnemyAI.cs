@@ -103,7 +103,7 @@ public class EnemyAI : MonoBehaviour {
             if (aiDistance <= damageDistance) {
 
                 // It will damage the player
-                //player.gameObject.SetActive(false);
+                //
 
                 enemyAnimator.ResetTrigger("walk");
                 enemyAnimator.ResetTrigger("idle");
