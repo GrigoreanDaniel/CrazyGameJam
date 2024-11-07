@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour {
 
+    [SerializeField] private GameObject itemContainer;
+
     private void Update() {
         if (Input.GetKeyDown(KeyCode.E)) {
             float interactRange = 2f;
@@ -11,10 +13,10 @@ public class PlayerInteract : MonoBehaviour {
             foreach (Collider collider in colliderArray) {
                 if (collider.TryGetComponent(out NPCInteractible npcInteractible)) {
                     npcInteractible.Interact();
+                    itemContainer.SetActive(true);
                 }
             }
         }
-        
     }
 
     public NPCInteractible GetInteractibleObject() {

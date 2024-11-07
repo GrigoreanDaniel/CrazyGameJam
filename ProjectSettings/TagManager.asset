@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - CinemachineTarget
+  - Knife
+  - Pistol
+  - Gun
   layers:
   - Default
   - TransparentFX
