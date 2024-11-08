@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour {
     public Vector3 rayCastOffset;
     public string deathScene;
     public float aiDistance;
-    
+
 
     void Start() {
 
@@ -63,7 +63,7 @@ public class EnemyAI : MonoBehaviour {
 
         if (Physics.Raycast(transform.position + rayCastOffset, direction, out hit, detectionDistance)) {
             if (hit.collider.gameObject.tag == "Player") {
-                
+
                 IsWalking = false;
                 StopCoroutine("stayIdle");
                 StopCoroutine("searchRoutine");
@@ -74,7 +74,7 @@ public class EnemyAI : MonoBehaviour {
 
         }
         if (IsSearching == true) {
-            
+
             enemy.speed = 0;
 
             enemyAnimator.ResetTrigger("walk");
@@ -149,19 +149,6 @@ public class EnemyAI : MonoBehaviour {
                 IsWalking = false;
             }
         }
-    }
-
-    public void TakeDamage(float damageAmount) {
-        health -= damageAmount;
-        if (health <= 0) {
-            Die();
-        }
-    }
-
-    private void Die() {
-        
-        //enemyAnimator.SetTrigger("die");
-        Destroy(gameObject, 2f);
     }
 
     public void stopChase() {
