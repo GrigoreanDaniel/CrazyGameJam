@@ -35,6 +35,8 @@ public class EnemyAI : MonoBehaviour {
     [SerializeField] private float health;
     [SerializeField] private float damage;
 
+    [SerializeField] private BoxCollider knifeCollider;
+
     private bool IsWalking;
     private bool IsChasing;
     private bool IsSearching;
@@ -44,6 +46,7 @@ public class EnemyAI : MonoBehaviour {
     public Vector3 rayCastOffset;
     public string deathScene;
     public float aiDistance;
+    
 
     void Start() {
 
@@ -68,6 +71,7 @@ public class EnemyAI : MonoBehaviour {
 
                 IsSearching = true;
             }
+
         }
         if (IsSearching == true) {
             
@@ -146,6 +150,20 @@ public class EnemyAI : MonoBehaviour {
             }
         }
     }
+
+    public void TakeDamage(float damageAmount) {
+        health -= damageAmount;
+        if (health <= 0) {
+            Die();
+        }
+    }
+
+    private void Die() {
+        
+        //enemyAnimator.SetTrigger("die");
+        Destroy(gameObject, 2f);
+    }
+
     public void stopChase() {
 
         IsWalking = true;
