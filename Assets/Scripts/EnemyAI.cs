@@ -30,10 +30,8 @@ public class EnemyAI : MonoBehaviour {
     [SerializeField] private float detectionDistance;
 
     [SerializeField] private float sightDistance;
-    [SerializeField] private float damageDistance;
-
-    [SerializeField] private float health;
-    [SerializeField] private float damage;
+    [SerializeField] private float catchDistance;
+    [SerializeField] private float jumpscareTime;
 
     private bool IsWalking;
     private bool IsChasing;
@@ -44,6 +42,7 @@ public class EnemyAI : MonoBehaviour {
     public Vector3 rayCastOffset;
     public string deathScene;
     public float aiDistance;
+
 
     void Start() {
 
@@ -60,7 +59,7 @@ public class EnemyAI : MonoBehaviour {
 
         if (Physics.Raycast(transform.position + rayCastOffset, direction, out hit, detectionDistance)) {
             if (hit.collider.gameObject.tag == "Player") {
-                
+
                 IsWalking = false;
                 StopCoroutine("stayIdle");
                 StopCoroutine("searchRoutine");
@@ -68,9 +67,10 @@ public class EnemyAI : MonoBehaviour {
 
                 IsSearching = true;
             }
+
         }
         if (IsSearching == true) {
-            
+
             enemy.speed = 0;
 
             enemyAnimator.ResetTrigger("walk");
@@ -100,21 +100,17 @@ public class EnemyAI : MonoBehaviour {
             enemyAnimator.ResetTrigger("search");
             enemyAnimator.SetTrigger("sprint");
 
-            if (aiDistance <= damageDistance) {
-
-                // It will damage the player
-                //
+            if (aiDistance <= catchDistance) {
 
                 enemyAnimator.ResetTrigger("walk");
                 enemyAnimator.ResetTrigger("idle");
                 enemyAnimator.ResetTrigger("search");
-                enemyAnimator.SetTrigger("sprint");
+                enemyAnimator.ResetTrigger("sprint");
+                enemyAnimator.SetTrigger("jumpscare");
 
-                // Start attack animation and stop the sprint animation
-                // enemyAnimator.SetTrigger("atackAnimation"); 
-                //
+                Destroy(player.gameObject);
 
-                //StartCoroutine(deathRoutine());
+                StartCoroutine(deathRoutine());
 
                 IsChasing = false;
             }
@@ -146,6 +142,7 @@ public class EnemyAI : MonoBehaviour {
             }
         }
     }
+
     public void stopChase() {
 
         IsWalking = true;
@@ -180,10 +177,10 @@ public class EnemyAI : MonoBehaviour {
 
         stopChase();
     }
-    /*IEnumerator deathRoutine() {
+    IEnumerator deathRoutine() {
 
         yield return new WaitForSeconds(jumpscareTime);
 
         SceneManager.LoadScene(deathScene);
-    }*/
+    }
 }
