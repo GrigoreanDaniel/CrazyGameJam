@@ -1,3 +1,4 @@
+using GLTF.Schema;
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,10 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour {
 
     [SerializeField] private GameObject itemContainer;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float damage;
+    [SerializeField] private GameObject player;
+    [SerializeField] private BoxCollider boxCollider;
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.E)) {
@@ -16,6 +21,11 @@ public class PlayerInteract : MonoBehaviour {
                     itemContainer.SetActive(true);
                 }
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            animator.SetTrigger("attack");
+        } else {
+            animator.SetBool("idle", true);
         }
     }
 
